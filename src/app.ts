@@ -1,15 +1,10 @@
 import express from 'express';
 import axios from 'axios';
 
-const app = express();
+import { Film } from './core/entities/Film.entity';
+import { dataSource } from './data/index';
 
-interface Film {
-  title: string;
-  movie_banner: string;
-  description: string;
-  director: string;
-  producer: string;
-}
+const app = express();
 
 app.post('/films', (req, res) => {
   axios
