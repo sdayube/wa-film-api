@@ -13,27 +13,23 @@ interface Film {
 
 app.post('/films', (req, res) => {
   axios
-    .get('https://ghibliapi.herokuapp.com/films', {
+    .get('https://ghibliapi.herokuapp.com/films?limit=50', {
       headers: { 'accept-encoding': null },
     })
     .then((response) => {
       const filmList = response.data.map((film: Film) => {
-        const {
-          title,
-          movie_banner: banner,
-          description,
-          director,
-          producer,
-        } = film;
+        const { title, movie_banner, description, director, producer } = film;
 
         return {
           title,
-          banner,
+          movie_banner,
           description,
           director,
           producer,
         };
-      });
+      }) as Film[];
+
+      console.log(response.data.length);
 
       res.json(filmList);
     });
