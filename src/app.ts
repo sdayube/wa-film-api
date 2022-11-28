@@ -1,10 +1,16 @@
 import express from 'express';
 import axios from 'axios';
+import 'reflect-metadata';
+import { container } from 'tsyringe';
 
-import { Film } from './core/entities/Film.entity';
+import './data/configuration/container';
+
 import { dataSource } from './data/index';
 
-import FilmRepository from './data/repositories/FilmRepository';
+import { ResetFilmsUseCase } from './core/useCases/ResetFilmsUseCase';
+
+import { FilmRepository } from './data/repositories/FilmRepository';
+import { IResetFilmsDTO } from './data/DTOs/IResetFilmsDTO';
 
 dataSource
   .initialize()
@@ -23,7 +29,7 @@ app.put('/films', (req, res) => {
       headers: { 'accept-encoding': null },
     })
     .then((response) => {
-      const filmList = response.data.map((film: Film) => {
+      const filmList = response.data.map((film: IResetFilmsDTO) => {
         const { title, movie_banner, description, director, producer } = film;
 
         return {
@@ -33,11 +39,11 @@ app.put('/films', (req, res) => {
           director,
           producer,
         };
-      }) as Film[];
+      }) as IResetFilmsDTO[];
 
-      const filmRepository = new FilmRepository();
+      const resetFilmsUseCase = container.resolve(ResetFilmsUseCase);
 
-      filmRepository.resetFilms(filmList).then(() => {
+      resetFilmsUseCase.execute(filmList).then(() => {
         res.status(200).json({ message: 'Films have been updated!' });
       });
     });

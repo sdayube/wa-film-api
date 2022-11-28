@@ -1,16 +1,19 @@
 import { Repository } from 'typeorm';
 import { dataSource } from '..';
 
+import { IResetFilmsDTO } from '../DTOs/IResetFilmsDTO';
+import { IFilmRepository } from './contracts/IFilmRepository';
+
 import { Film } from '../../core/entities/Film.entity';
 
-export default class FilmRepository {
+export class FilmRepository implements IFilmRepository {
   private repository: Repository<Film>;
 
   constructor() {
     this.repository = dataSource.getRepository(Film);
   }
 
-  async resetFilms(films: Film[]): Promise<void> {
+  async resetFilms(films: IResetFilmsDTO[]): Promise<void> {
     await this.repository.clear();
     await this.repository.save(films);
   }
