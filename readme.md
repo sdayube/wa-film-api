@@ -20,3 +20,10 @@ A aplicação está configurada para rodar via docker-compose, como é prática 
 - **GET /films**: Retorna 10 filmes do banco de dados, de acordo com a página passada como query param (ou a página 1, por padrão), e o número total de páginas existentes.
 
 *Obs.: Como existem apenas 22 filmes do Studio Ghibli no total, nao é possível buscar 50 filmes, mas o limitador de busca está ativo e, caso isso mude um dia, a API permanecerá buscando o máximo de 50 filmes.*
+
+## Testes
+A aplicação inclui testes com Jest para ambos os casos de uso (resetar filmes e buscar filmes paginados).
+
+Para rodar os testes, é necessário ter o yarn instalado, pois esse foi o gerenciador de pacotes utilizado nesse projeto. Feito isso, execute os comandos:
+    - `yarn install`
+    - `yarn test`
