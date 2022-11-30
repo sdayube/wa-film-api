@@ -23,6 +23,13 @@ dataSource
 
 const app = express();
 
+app.use((req, res, next) => {
+  res.append('Access-Control-Allow-Origin', ['http://localhost:3000']);
+  res.append('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+  res.append('Access-Control-Allow-Headers', 'Content-Type');
+  next();
+});
+
 app.put('/films', (req, res) => {
   axios
     .get('https://ghibliapi.herokuapp.com/films?limit=50', {
@@ -48,11 +55,9 @@ app.put('/films', (req, res) => {
       });
     })
     .catch((err) => {
-      res
-        .status(500)
-        .json({
-          message: 'Error fetching from Studio Ghibli API: ' + err.message,
-        });
+      res.status(500).json({
+        message: 'Error fetching from Studio Ghibli API: ' + err.message,
+      });
     });
 });
 
