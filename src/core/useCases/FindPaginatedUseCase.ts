@@ -7,11 +7,11 @@ import { Film } from '../entities/Film.entity';
 class FindPaginatedUseCase {
   constructor(
     @inject('FilmRepository')
-    private usersRepository: IFilmRepository,
+    private filmRepository: IFilmRepository,
   ) {}
 
   async execute(page: number): Promise<[Film[], number]> {
-    const films = await this.usersRepository.findPaginated(page);
+    const films = await this.filmRepository.findPaginated(page);
     return films;
   }
 }

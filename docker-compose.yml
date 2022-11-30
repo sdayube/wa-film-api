@@ -24,6 +24,8 @@ services:
       - postgres
     depends_on: 
       - postgres
+    env_file:
+      - docker.env
 
 volumes:
   pgdata:

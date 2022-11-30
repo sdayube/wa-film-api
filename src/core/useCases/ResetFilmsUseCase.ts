@@ -7,11 +7,11 @@ import { IFilmRepository } from '../../data/repositories/contracts/IFilmReposito
 class ResetFilmsUseCase {
   constructor(
     @inject('FilmRepository')
-    private usersRepository: IFilmRepository,
+    private filmRepository: IFilmRepository,
   ) {}
 
   async execute(films: IResetFilmsDTO[]): Promise<void> {
-    await this.usersRepository.resetFilms(films);
+    await this.filmRepository.resetFilms(films);
   }
 }
 

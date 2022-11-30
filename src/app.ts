@@ -1,3 +1,6 @@
+import * as dotenv from 'dotenv';
+dotenv.config();
+
 import express from 'express';
 import axios from 'axios';
 import 'reflect-metadata';
@@ -11,6 +14,7 @@ import { ResetFilmsUseCase } from './core/useCases/ResetFilmsUseCase';
 import { FindPaginatedUseCase } from './core/useCases/FindPaginatedUseCase';
 
 import { IResetFilmsDTO } from './data/DTOs/IResetFilmsDTO';
+import { FindAllUseCase } from './core/useCases/FindAllUseCase';
 
 dataSource
   .initialize()
@@ -24,7 +28,7 @@ dataSource
 const app = express();
 
 app.use((req, res, next) => {
-  res.append('Access-Control-Allow-Origin', ['http://localhost:3000']);
+  res.append('Access-Control-Allow-Origin', [process.env.FRONTEND_URL]);
   res.append('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
   res.append('Access-Control-Allow-Headers', 'Content-Type');
   next();
