@@ -46,6 +46,13 @@ app.put('/films', (req, res) => {
       resetFilmsUseCase.execute(filmList).then(() => {
         res.status(200).json({ message: 'Films have been updated!' });
       });
+    })
+    .catch((err) => {
+      res
+        .status(500)
+        .json({
+          message: 'Error fetching from Studio Ghibli API: ' + err.message,
+        });
     });
 });
 
