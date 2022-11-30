@@ -14,7 +14,6 @@ import { ResetFilmsUseCase } from './core/useCases/ResetFilmsUseCase';
 import { FindPaginatedUseCase } from './core/useCases/FindPaginatedUseCase';
 
 import { IResetFilmsDTO } from './data/DTOs/IResetFilmsDTO';
-import { FindAllUseCase } from './core/useCases/FindAllUseCase';
 
 dataSource
   .initialize()
