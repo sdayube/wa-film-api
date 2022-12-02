@@ -60,7 +60,7 @@ app.put('/films', (req, res) => {
       });
     })
     .catch((err) => {
-      res.status(500).json({
+      res.status(503).json({
         message: 'Error fetching from Studio Ghibli API: ' + err.message,
       });
     });
