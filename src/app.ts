@@ -15,6 +15,8 @@ import { FindPaginatedUseCase } from './core/useCases/FindPaginatedUseCase';
 
 import { IResetFilmsDTO } from './data/DTOs/IResetFilmsDTO';
 
+import filmSeed from './seed/films.json';
+
 dataSource
   .initialize()
   .then(() => {
@@ -62,6 +64,15 @@ app.put('/films', (req, res) => {
         message: 'Error fetching from Studio Ghibli API: ' + err.message,
       });
     });
+});
+
+app.put('/films-from-seed', (req, res) => {
+  const resetFilmsUseCase = container.resolve(ResetFilmsUseCase);
+  const filmList = filmSeed as IResetFilmsDTO[];
+
+  resetFilmsUseCase.execute(filmList).then(() => {
+    res.status(200).json({ message: 'Films have been updated!' });
+  });
 });
 
 app.get('/films', (req, res) => {
