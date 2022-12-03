@@ -1,6 +1,7 @@
 # WA Film API
 
-Essa API foi desenvolvida como desafio técnico para a empresa WA - Work Anywhere, referente à parte do back-end.
+> 
+Essa API foi desenvolvida como desafio técnico para a empresa WA - Work Anywhere, referente à parte do back-end, em paralelo a um [projeto em React no front-end](https://github.com/sdayube/wa-react).
 
 Por se tratar de uma API simples, decidi por uma arquitetura de baixa complexidade, que facilite o entendimento da função de cada elemento do código, dividindo-o em Core (que guarda a entidade `Film`), Data (que guarda a lógica de requisição ao banco e migrations) e App (que guarda as rotas da aplicação).
 
@@ -34,6 +35,6 @@ Para rodar os testes, é necessário ter o yarn instalado, pois esse foi o geren
 
 
 ## Deploy
-A aplicação e o banco de dados foram deployados por meio do plano gratuito da plataforma Render, que funciona de maneira similar ao Heroku. Para acessar as rotas em produção, utilize a url [wa-film-api.onrender.com/films](wa-film-api.onrender.com/films).
+A aplicação e o banco de dados foram deployados por meio do plano gratuito da plataforma Render, que funciona de maneira similar ao Heroku. Para acessar as rotas em produção, utilize a url [https://wa-film-api.onrender.com/films](https://wa-film-api.onrender.com/films).
 
 *Obs.: Como utilizei o plano gratuito, a aplicaçao irá entrar em standby após 15 minutos sem uso, ou seja, caso o primeiro request demore demais ou retorne um erro, o Render provavelmente está buildando a aplicação novamente. Tente novamente após cerca de 2 a 3 minutos e provavelmente o back-end irá funcionar normalmente.*
